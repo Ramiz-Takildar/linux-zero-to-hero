@@ -1,19 +1,44 @@
-# Chapter 9 Labs
+# Chapter 9 Labs: System Administration
 
 ## Lab 9.1: Logs
+
 ```bash
-tail -20 /var/log/syslog
-journalctl --since "1 hour ago"
+# View system logs
+sudo tail -20 /var/log/syslog 2>/dev/null || sudo tail -20 /var/log/messages
+
+# View auth logs
+sudo tail -20 /var/log/auth.log 2>/dev/null || sudo tail -20 /var/log/secure
+
+# Journalctl
+sudo journalctl --since "1 hour ago" | tail -20
 ```
 
 ## Lab 9.2: Cron
+
 ```bash
+# Edit crontab
 crontab -l
-# Add: */5 * * * * echo $(date) >> ~/crontest.log
+
+# Add entry (don't save unless you want it)
+# crontab -e
+# Add: */5 * * * * echo $(date) >> ~/cron-test.log
+
+# View system cron
+ls /etc/cron.d/
+cat /etc/crontab | head -20
 ```
 
 ## Lab 9.3: Backup
+
 ```bash
-tar -czvf ~/backup-$(date +%Y%m%d).tar.gz ~/linux-labs
-ls ~/*.tar.gz
+# Create backup directory
+mkdir -p ~/backups
+
+# Create tar backup
+cd ~
+tar -czvf ~/backups/home-backup-$(date +%Y%m%d).tar.gz linux-labs
+
+# Verify
+ls -lh ~/backups/
+tar -tzvf ~/backups/home-backup-*.tar.gz | head
 ```

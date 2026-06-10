@@ -1,22 +1,70 @@
-# Chapter 3 Labs
+# Chapter 3 Labs: Users & Permissions
 
-## Lab 3.1: Permissions
+## Lab 3.1: File Permissions
+
 ```bash
-touch perm.txt
-chmod 600 perm.txt
-ls -l perm.txt
+# Setup
+cd ~
+mkdir -p linux-labs/chapter-03
+cd linux-labs/chapter-03
+
+touch perms.txt
+echo "test content" > perms.txt
+
+# View current permissions
+ls -l perms.txt
+
+# Change permissions
+chmod 600 perms.txt
+ls -l perms.txt
+
+# Add execute for owner
+chmod u+x perms.txt
+ls -l perms.txt
+
+# Test access
+cat perms.txt
+./perms.txt  # Won't work (not script)
 ```
 
-## Lab 3.2: Users
+## Lab 3.2: Users and Groups
+
 ```bash
-# As root or with sudo
-sudo useradd testuser
-sudo passwd testuser
-id testuser
+# Check current user groups
+id
+whoami
+groups
+
+# View all users
+cat /etc/passwd | head -10
+
+# View all groups
+cat /etc/group | head -10
+
+# Switch user (if you have password)
+su - username
+
+# Or use sudo to run as another user
+sudo -u nobody whoami
 ```
 
-## Lab 3.3: Ownership
+## Lab 3.3: Special Permissions
+
 ```bash
-sudo chown root:root perm.txt
-ls -l perm.txt
+# SUID
+mkdir special
+cd special
+
+touch test.sh
+echo "#!/bin/bash" > test.sh
+echo "whoami" >> test.sh
+chmod u+s test.sh
+ls -l test.sh
+
+# Sticky bit
+chmod +t .
+ls -ld .
+
+cd ~
+rm -rf special
 ```
