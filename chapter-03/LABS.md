@@ -68,3 +68,82 @@ ls -ld .
 cd ~
 rm -rf special
 ```
+
+## Lab 3.4: Sudo Configuration
+
+```bash
+# View sudo access
+sudo -l
+
+# Check sudo timeout
+sudo -k  # Reset timestamp
+sudo whoami  # Will ask for password again
+
+# Run command as specific user
+sudo -u nobody whoami
+sudo -u www-data id
+
+# Edit file with sudo
+sudo touch /root/testfile
+sudo rm /root/testfile
+```
+
+## Lab 3.5: ACL (Access Control Lists)
+
+```bash
+# Check if ACL is installed
+which getfacl || sudo apt install -y acl
+
+# Create test file
+touch acl-test.txt
+
+# View default ACL
+getfacl acl-test.txt
+
+# Add ACL for specific user (need another user)
+# sudo setfacl -m u:username:rw acl-test.txt
+
+# View updated ACL
+# getfacl acl-test.txt
+
+# Remove ACL
+# setfacl -b acl-test.txt
+
+# Cleanup
+rm acl-test.txt
+```
+
+## Lab 3.6: Ownership Transfer
+
+```bash
+# Create test files
+mkdir ownership-test
+cd ownership-test
+touch file1 file2 file3
+
+# View current owner
+ls -l
+
+# Change owner (need sudo)
+sudo chown root file1
+ls -l file1
+
+# Change group
+sudo chown :users file2
+ls -l file2
+
+# Change both
+sudo chown root:root file3
+ls -l file3
+
+# Recursive change
+mkdir subdir
+touch subdir/file4
+sudo chown -R root: subdir
+ls -la subdir
+
+# Cleanup
+sudo chown -R $USER: .
+cd ~
+rm -rf ownership-test
+```

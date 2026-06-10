@@ -52,3 +52,67 @@ ls /etc/apt/sources.list.d/
 # Update should be run after changes
 sudo apt update
 ```
+
+## Lab 4.4: Package Dependencies
+
+```bash
+# View package dependencies
+apt-cache depends nginx | head -20
+
+# View reverse dependencies (what depends on this)
+apt-cache rdepends curl | head -10
+
+# Show package policy/versions
+apt-cache policy htop
+
+# Download package without installing
+apt download curl
+ls curl*.deb
+
+# Clean up
+rm curl*.deb 2>/dev/null || true
+```
+
+## Lab 4.5: Hold and Unhold Packages
+
+```bash
+# Install a test package
+sudo apt install -y figlet
+
+# Check version
+figlet --version
+
+# Hold the package (prevent updates)
+sudo apt-mark hold figlet
+apt-mark showhold
+
+# Try to upgrade (will skip held package)
+sudo apt upgrade -y
+
+# Unhold the package
+sudo apt-mark unhold figlet
+
+# Remove test package
+sudo apt remove -y figlet
+```
+
+## Lab 4.6: DPKG Operations
+
+```bash
+# List all installed packages
+dpkg -l | wc -l
+dpkg -l | grep ^i | wc -l  # Only installed
+
+# Show package status
+dpkg -l ssh
+
+# Search for package owning a file
+dpkg -S /bin/ls
+dpkg -S /usr/bin/htop 2>/dev/null || echo "Not found"
+
+# Reconfigure package
+# sudo dpkg-reconfigure tzdata
+
+# Check for broken packages
+sudo dpkg --audit
+```
