@@ -28,17 +28,17 @@ This course takes you from Linux basics to advanced system administration. Each 
 | # | Chapter | Topics | Labs | Time |
 |---|---------|--------|------|------|
 | 1 | [Linux Basics & Installation](./chapter-01/) | Distros, installation, filesystem | 3 | 2 days |
-| 2 | [Files & Directories](./chapter-02/) | Navigation, permissions, operations | 3 | 3 days |
+| 2 | [Files & Directories](./chapter-02/) | Navigation, permissions, operations | 4 | 3 days |
 | 3 | [Users & Permissions](./chapter-03/) | Users, groups, sudo, ACLs | 3 | 2 days |
 | 4 | [Package Management](./chapter-04/) | APT, YUM, Snap, Flatpak | 3 | 2 days |
-| 5 | [Process Management](./chapter-05/) | PS, top, kill, systemd | 3 | 3 days |
-| 6 | [Shell & Scripting](./chapter-06/) | Bash, variables, loops, functions | 3 | 4 days |
+| 5 | [Process Management](./chapter-05/) | PS, top, kill, systemd | 4 | 3 days |
+| 6 | [Shell & Scripting](./chapter-06/) | Bash, variables, loops, functions | 4 | 4 days |
 | 7 | [Networking](./chapter-07/) | IP, DNS, SSH, Netstat, Firewall | 3 | 3 days |
 | 8 | [Storage & Filesystems](./chapter-08/) | Partitions, LVM, mount, fstab | 3 | 3 days |
 | 9 | [System Administration](./chapter-09/) | Logs, cron, services, backups | 3 | 3 days |
 | 10 | [Security & Hardening](./chapter-10/) | SELinux, hardening, monitoring | 3 | 4 days |
 
-**Total:** 30+ hands-on labs, 150+ interview questions
+**Total:** 33+ hands-on labs, 150+ interview questions
 
 ---
 
